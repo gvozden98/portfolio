@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="sr-Latn" class="scroll-smooth scroll-pt-24">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- ============================================================
+       SEO (Static Meta Tags)
+       Sve podatke možete podesiti u CONFIG objektu na dnu stranice.
+       ============================================================ -->
+  <title>IronWeb | Izrada sajtova i e-prodavnica</title>
+  <meta name="description" content="IronWeb — Brzi, stabilni sajtovi i e-prodavnice za butike, firme, majstore i ordinacije. Gotov za 48 sati, besplatan probni sajt, bez plaćanja unapred." />
+  <meta name="theme-color" content="#2d3b4e" />
+  <link rel="icon" type="image/svg+xml" href="ironweb-logo-full.svg" />
+  <link rel="canonical" href="https://ironweb.rs/" />
+
+  <!-- Open Graph / Social Media Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="sr_RS" />
+  <meta property="og:title" content="IronWeb | Ljudi u vašem gradu već traže vaše usluge. Neka vas i pozovu." />
+  <meta property="og:description" content="Gvozdeni kvalitet i brzi sajtovi za lokalne firme. Besplatan probni sajt za 48h — plaćate tek kada vidite gotov sajt na svom telefonu." />
+  <meta property="og:url" content="https://ironweb.rs/" />
+  <meta property="og:image" content="https://ironweb.rs/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cyan: '#22e5f0',
+              'cyan-dark': '#06b6d4',
+              steel: '#8a969e',
+              'steel-light': '#b5c0c7',
+              slate: '#2d3b4e',
+            },
+            navy: {
+              950: '#070d1c',
+              900: '#0b1426',
+              850: '#0e1a32',
+              800: '#13203a',
+              700: '#2d3b4e',
+              600: '#38485e',
+            },
+            viber: { DEFAULT: '#7360f2', dark: '#5f4bd8' },
+            whatsapp: { DEFAULT: '#25D366', dark: '#1da851' },
+          },
+          boxShadow: {
+            cta: '0 12px 36px -8px rgba(34, 229, 240, .45)',
+            call: '0 12px 36px -8px rgba(5, 150, 105, .55)',
+            glow: '0 0 40px -10px rgba(16, 185, 129, .4)',
+            card: '0 1px 3px rgba(15,23,42,.05), 0 10px 28px -12px rgba(15,23,42,.12)',
+            cardHover: '0 20px 40px -15px rgba(15,23,42,.18)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Detect JS support immediately for scroll reveal -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <style>
+    body { -webkit-tap-highlight-color: transparent; }
+    .hero-glow {
+      background:
+        radial-gradient(65rem 35rem at 85% -10%, rgba(34,229,240,.18), transparent 60%),
+        radial-gradient(55rem 35rem at -10% 100%, rgba(16,185,129,.16), transparent 60%),
+        radial-gradient(40rem 30rem at 50% 50%, rgba(45,59,78,.45), transparent 70%),
+        #070d1c;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+    }
+    summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    .safe-bottom { padding-bottom: calc(.75rem + env(safe-area-inset-bottom)); }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+    .floaty { animation: floaty 4.5s ease-in-out infinite; }
+
+    @keyframes ring {
+      0%, 100% { transform: rotate(0); }
+      10%, 30% { transform: rotate(-14deg); }
+      20%, 40% { transform: rotate(14deg); }
+      50% { transform: rotate(0); }
+    }
+    .ring { animation: ring 2.2s ease-in-out infinite; transform-origin: 50% 50%; }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+    .pulse-glow { animation: pulseGlow 2.5s infinite ease-in-out; }
+
+    /* Custom range input styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: #22e5f0;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(34,229,240,0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* =========================================================
+       SCROLL REVEAL ANIMATIONS (Smooth & Elegant Pace)
+       ========================================================= */
+    .js .reveal,
+    .js .reveal-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .js .reveal-left {
+      opacity: 0;
+      transform: translateX(-36px);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .js .reveal-right {
+      opacity: 0;
+      transform: translateX(36px);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .js .reveal-scale {
+      opacity: 0;
+      transform: scale(0.94) translateY(24px);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    /* Active Revealed State */
+    .js .is-revealed {
+      opacity: 1 !important;
+      transform: translate3d(0, 0, 0) scale(1) !important;
+    }
+
+    /* Delays for staggered entrances — leisurely, premium feel */
+    .delay-75  { transition-delay: 120ms; }
+    .delay-100 { transition-delay: 180ms; }
+    .delay-150 { transition-delay: 260ms; }
+    .delay-200 { transition-delay: 360ms; }
+    .delay-250 { transition-delay: 460ms; }
+    .delay-300 { transition-delay: 560ms; }
+    .delay-350 { transition-delay: 660ms; }
+    .delay-400 { transition-delay: 760ms; }
+    .delay-500 { transition-delay: 900ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .floaty, .ring, .pulse-glow { animation: none; }
+      .js .reveal,
+      .js .reveal-up,
+      .js .reveal-left,
+      .js .reveal-right,
+      .js .reveal-scale {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+
+  <!-- LocalBusiness Schema.org JSON-LD -->
+  <script type="application/ld+json" id="ld-json"></script>
+</head>
+
+<body class="bg-white font-sans text-slate-800 antialiased selection:bg-cyan-400 selection:text-slate-950 pb-28 md:pb-0 overflow-x-hidden">
+
+  <!-- SVG Icon Sprites -->
+  <svg width="0" height="0" class="hidden" aria-hidden="true">
+        <symbol id="ico-ironweb" viewBox="330 230 360 410">
+      <!-- Gray (Iron) half -->
+      <g stroke="#8a969e" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M490 258 L345 338"/>
+        <path d="M345 338 L345 388"/>
+        <path d="M345 470 L345 527"/>
+        <path d="M345 527 L412 568"/>
+        <path d="M390 404 L356 430 L390 456"/>
+        <path d="M345 338 L422 383"/>
+        <path d="M422 383 L490 262"/>
+        <path d="M422 383 L500 340"/>
+        <path d="M422 383 L422 420"/>
+        <path d="M422 450 L422 490"/>
+        <path d="M422 383 L500 427"/>
+        <path d="M422 490 L500 440"/>
+        <path d="M422 490 L345 527"/>
+        <path d="M422 490 L500 535"/>
+        <path d="M512 280 L512 308" stroke-width="7"/>
+      </g>
+      <g fill="#8a969e" stroke="none">
+        <circle cx="345" cy="338" r="13"/>
+        <circle cx="422" cy="383" r="13"/>
+        <circle cx="422" cy="490" r="13"/>
+        <circle cx="345" cy="527" r="13"/>
+      </g>
+      <!-- Cyan (Web) half -->
+      <g stroke="#22e5f0" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M512 243 L678 340"/>
+        <path d="M678 340 L678 405"/>
+        <path d="M678 462 L678 530"/>
+        <path d="M678 530 L507 628"/>
+        <path d="M507 628 L432 578"/>
+        <path d="M634 404 L668 430 L634 456"/>
+        <path d="M512 243 L602 383"/>
+        <path d="M512 333 L602 383"/>
+        <path d="M678 340 L602 383"/>
+        <path d="M602 383 L512 433"/>
+        <path d="M602 383 L600 488"/>
+        <path d="M512 433 L600 488"/>
+        <path d="M512 433 L517 538"/>
+        <path d="M600 488 L678 530"/>
+        <path d="M600 488 L517 538"/>
+        <path d="M517 538 L432 578"/>
+        <path d="M517 538 L507 628"/>
+      </g>
+      <g fill="#22e5f0" stroke="none">
+        <circle cx="512" cy="243" r="14"/>
+        <circle cx="512" cy="333" r="13" opacity="0.75"/>
+        <circle cx="678" cy="340" r="13"/>
+        <circle cx="602" cy="383" r="13"/>
+        <circle cx="512" cy="433" r="13"/>
+        <circle cx="600" cy="488" r="13"/>
+        <circle cx="678" cy="530" r="13"/>
+        <circle cx="517" cy="538" r="13"/>
+        <circle cx="432" cy="578" r="14"/>
+        <circle cx="507" cy="628" r="14"/>
+      </g>
+    </symbol>
+    <symbol id="ico-wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </symbol>
+    <symbol id="ico-viber" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M19.38 3.5C17.2 2.1 14.54 1.8 11.83 2c-3.1.2-5.9 1.4-8.03 3.5C1.67 7.63.53 10.4.5 13.5c-.03 2.16.54 4.2 1.67 6l-1.09 4.08a.8.8 0 0 0 .98.98l4.08-1.09c1.8 1.13 3.84 1.7 6 1.67 3.1-.03 5.87-1.17 8-3.3 2.1-2.13 3.3-4.93 3.5-8.03.2-2.71-.1-5.37-1.5-7.55l-2.76-2.76zm-1.8 12.3c-.6.6-1.6 1-2.6 1.1-.9.1-2.3-.2-4.1-1.3-1.8-1.1-3.2-2.6-4.3-4.3-1.1-1.8-1.4-3.2-1.3-4.1.1-1 .5-2 1.1-2.6.4-.4.9-.6 1.4-.4.4.1.8.6 1.1 1.2.4.8.9 1.8 1 2 .1.3 0 .6-.2.9-.2.3-.5.6-.7.9-.2.2-.2.5 0 .8.6 1.1 1.5 2 2.6 2.6.3.2.6.2.8 0 .3-.2.6-.5.9-.7.3-.2.6-.3.9-.2.2.1 1.2.6 2 1 .6.3 1.1.7 1.2 1.1.2.5 0 1-.4 1.4z"/>
+    </symbol>
+  </svg>
+
+  <!-- =========================================================
+       0. TOP URGENCY & AVAILABILITY BANNER
+       ========================================================= -->
+  <aside class="relative z-50 bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 px-4 py-2 text-center text-xs font-bold text-white shadow-inner sm:text-sm">
+    <div class="mx-auto flex max-w-6xl items-center justify-center gap-2">
+      <span class="inline-flex h-2 w-2 rounded-full bg-white animate-ping"></span>
+      <span>⚡ Trenutno primamo 3 nova probna sajta za ovu nedelju • <span class="underline underline-offset-2">0€ avansa dok ne vidite sajt</span></span>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       1. STICKY NAVBAR
+       ========================================================= -->
+  <header id="navbar" class="sticky top-0 z-40 border-b border-white/10 bg-navy-950/95 backdrop-blur-md transition-all">
+    <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:h-[72px]">
+      
+      <!-- Brand Logo -->
+      <a href="#top" class="flex min-w-0 items-center gap-2.5 text-white transition hover:opacity-90">
+        <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2d3b4e] border border-cyan-400/30 shadow-[0_0_15px_rgba(34,229,240,0.3)] p-1 overflow-hidden">
+          <svg class="h-full w-full"><use href="#ico-ironweb"/></svg>
+        </span>
+        <div class="truncate">
+          <span class="block truncate text-base font-black tracking-tight sm:text-lg"><span class="text-[#8a969e]">Iron</span><span class="text-[#22e5f0]">Web</span></span>
+          <span class="hidden text-[11px] font-semibold text-slate-400 sm:block">Gvozdenović • Sajtovi za firme</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden items-center gap-7 lg:flex">
+        <a href="#kako-radimo" class="text-sm font-semibold text-slate-300 transition hover:text-white">Kako radimo</a>
+        <a href="#kalkulator" class="text-sm font-semibold text-slate-300 transition hover:text-white">Kalkulator zarade</a>
+        <a href="#usluge" class="text-sm font-semibold text-slate-300 transition hover:text-white">Sve usluge</a>
+        <a href="#primeri" class="text-sm font-semibold text-slate-300 transition hover:text-white">Primeri</a>
+        <a href="#cena" class="text-sm font-semibold text-slate-300 transition hover:text-white">Cena</a>
+        <a href="#pitanja" class="text-sm font-semibold text-slate-300 transition hover:text-white">Česta pitanja</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Direct Phone CTA -->
+        <a data-link="tel" href="#" class="pulse-glow inline-flex h-11 items-center gap-2 rounded-xl bg-emerald-600 px-3.5 text-sm font-bold text-white shadow-call transition hover:bg-emerald-500 active:scale-95 sm:px-4" aria-label="Pozovite nas">
+          <span class="ring grid h-6 w-6 place-items-center rounded-full bg-emerald-700/60">
+            <i data-lucide="phone-call" class="h-3.5 w-3.5 text-emerald-200"></i>
+          </span>
+          <span class="hidden font-extrabold sm:inline" data-cfg="phoneDisplay">064 123 4567</span>
+          <span class="sm:hidden font-extrabold">Pozovi</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="menuBtn" type="button" class="grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-slate-200 transition hover:bg-white/10 lg:hidden" aria-label="Otvori meni" aria-expanded="false" aria-controls="mobileMenu">
+          <i data-lucide="menu" class="h-6 w-6"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden border-t border-white/10 bg-navy-950 px-4 py-3 lg:hidden">
+      <div class="flex flex-col space-y-1">
+        <a href="#kako-radimo" class="mobile-link rounded-xl px-4 py-3 text-base font-semibold text-slate-200 hover:bg-white/5">Kako radimo</a>
+        <a href="#kalkulator" class="mobile-link rounded-xl px-4 py-3 text-base font-semibold text-slate-200 hover:bg-white/5">Kalkulator zarade</a>
+        <a href="#usluge" class="mobile-link rounded-xl px-4 py-3 text-base font-semibold text-slate-200 hover:bg-white/5">Sve usluge</a>
+        <a href="#primeri" class="mobile-link rounded-xl px-4 py-3 text-base font-semibold text-slate-200 hover:bg-white/5">Primeri sajtova</a>
+        <a href="#cena" class="mobile-link rounded-xl px-4 py-3 text-base font-semibold text-slate-200 hover:bg-white/5">Cena i garancija</a>
+        <a href="#pitanja" class="mobile-link rounded-xl px-4 py-3 text-base font-semibold text-slate-200 hover:bg-white/5">Česta pitanja</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =========================================================
+         2. HERO SECTION — THE IRRESISTIBLE HOOK
+         ========================================================= -->
+    <section class="hero-glow relative overflow-hidden text-white">
+      <div class="grid-bg pointer-events-none absolute inset-0"></div>
+
+      <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-20 pt-8 sm:px-6 sm:pt-14 lg:grid-cols-[1.25fr_.75fr] lg:pb-28 lg:pt-16">
+        
+        <!-- Left Column: Copy & Strong Hook -->
+        <div class="reveal">
+          <!-- Live Available Badge -->
+          <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-300 sm:text-sm">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+            </span>
+            <span>🟢 Dostupan za pozive • Sajt gotov za 48 sati</span>
+          </div>
+
+          <!-- Main Power Headline -->
+          <h1 class="mt-6 text-[2.2rem] font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+            Ljudi u vašem gradu već traže vaše usluge na telefonu.
+            <span class="bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-400 bg-clip-text text-transparent">
+              Neka pozovu vas, a ne vašu konkurenciju.
+            </span>
+          </h1>
+
+          <!-- Subhead addressing the exact pain & no-brainer proposition -->
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
+            Kad nekome procuri bojler, crkne auto ili zaboli zub — ne pita komšije, nego odmah uzme telefon i otvori Google. Ako tamo nemate sajt sa cenama i dugmetom za poziv, <b class="text-white">posao ode drugome za 5 sekundi</b>.
+          </p>
+          <p class="mt-3 max-w-xl text-base leading-relaxed text-slate-300">
+            Pravim vam munjevit, pregledan sajt za 48 sati. <b class="text-emerald-400">Prvo vidite probni sajt na svom telefonu potpuno besplatno</b> — ako vam se ne dopadne, niste dužni ni dinar.
+          </p>
+
+          <!-- CTAs: Call & Messaging -->
+          <div class="reveal delay-100 mt-8 flex flex-col gap-3.5 sm:flex-row sm:flex-wrap [&>*]:sm:whitespace-nowrap">
+            <!-- Primary CTA: Phone Call -->
+            <a data-link="tel" href="#" class="pulse-glow inline-flex min-h-[58px] items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#22e5f0] to-cyan-500 px-7 text-base font-black text-slate-950 shadow-cta transition hover:-translate-y-0.5 hover:from-cyan-300 hover:to-cyan-400 active:scale-95">
+              <span class="grid h-7 w-7 place-items-center rounded-full bg-slate-950/20">
+                <i data-lucide="phone-call" class="h-4 w-4 text-slate-950"></i>
+              </span>
+              <span>Pozovite odmah</span>
+            </a>
+
+            <!-- Secondary CTA: Viber / WhatsApp -->
+            <button type="button" data-open-chooser class="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-6 text-base font-bold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15 active:scale-95">
+              <span class="flex items-center gap-2">
+                <svg class="h-5 w-5 text-viber"><use href="#ico-viber"/></svg>
+                <span class="text-white/40">/</span>
+                <svg class="h-5 w-5 text-emerald-400"><use href="#ico-wa"/></svg>
+              </span>
+              <span>Viber / WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- Trust & Social Proof Row -->
+          <div class="reveal delay-150 mt-8 flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+            <div class="flex items-center gap-1 text-amber-400">
+              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            </div>
+            <span class="font-extrabold text-white">4.9 / 5.0</span>
+            <span class="text-slate-400">• Specijalizovano za e-prodavnice, majstore, salone i ordinacije</span>
+          </div>
+
+          <!-- 3 Rich Trust & Value Cards -->
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            
+            <div class="reveal-up delay-200 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition hover:border-emerald-400/40">
+              <div class="flex items-center gap-2 text-emerald-400 font-extrabold text-xs uppercase tracking-wider">
+                <i data-lucide="shield-check" class="h-4 w-4 shrink-0"></i>
+                <span>Bez ikakvog rizika</span>
+              </div>
+              <p class="mt-1.5 text-sm font-extrabold text-white">Probni sajt 0€</p>
+              <p class="mt-1 text-xs text-slate-300 leading-snug">Prvo vidite gotov sajt na telefonu, pa tek onda odlučujete.</p>
+            </div>
+
+            <div class="reveal-up delay-250 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition hover:border-amber-400/40">
+              <div class="flex items-center gap-2 text-amber-400 font-extrabold text-xs uppercase tracking-wider">
+                <i data-lucide="zap" class="h-4 w-4 shrink-0"></i>
+                <span>Rok isporuke</span>
+              </div>
+              <p class="mt-1.5 text-sm font-extrabold text-white">Gotovo za 48 sati</p>
+              <p class="mt-1 text-xs text-slate-300 leading-snug">Bez višemesečnog čekanja i sastanaka. Sve je spremno za 2 dana.</p>
+            </div>
+
+            <div class="reveal-up delay-300 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition hover:border-cyan-400/40">
+              <div class="flex items-center gap-2 text-cyan-400 font-extrabold text-xs uppercase tracking-wider">
+                <i data-lucide="map-pin" class="h-4 w-4 shrink-0"></i>
+                <span>Lokalna pretraga</span>
+              </div>
+              <p class="mt-1.5 text-sm font-extrabold text-white">Google Mape & Pozivi</p>
+              <p class="mt-1 text-xs text-slate-300 leading-snug">Povezano sa mapama tako da vas komšiluk nađe i pozove.</p>
+            </div>
+
+          </div>
+
+          <!-- Live availability reassurance -->
+          <p class="reveal delay-350 mt-4 flex items-center gap-2 text-xs font-semibold text-slate-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Javljam se lično na telefon • Kratak razgovor od 3 minuta, bez ikakve obaveze</span>
+          </p>
+        </div>
+
+        <!-- Right Column: Interactive Live Phone Mockup with Industry Switcher -->
+        <div class="reveal-right delay-150 relative mx-auto w-full max-w-md" aria-label="Interaktivni prikaz sajta">
+          
+          <!-- Industry Switcher Tabs (Click to test different niches) -->
+          <div class="mb-4 text-center">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Isprobajte za vašu delatnost:</p>
+            <div class="mt-2.5 flex items-center justify-center gap-1 sm:gap-1.5 flex-nowrap" id="heroIndustryTabs">
+              <button type="button" data-tab="shop" class="industry-tab active whitespace-nowrap rounded-lg border border-cyan-400/40 bg-cyan-500/20 px-2.5 py-1 text-xs font-bold text-cyan-200 transition">🛍️ Prodavnica</button>
+              <button type="button" data-tab="clinic" class="industry-tab whitespace-nowrap rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-semibold text-slate-300 transition hover:bg-white/10">🦷 Ordinacija</button>
+              <button type="button" data-tab="trades" class="industry-tab whitespace-nowrap rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-semibold text-slate-300 transition hover:bg-white/10">🔧 Majstor</button>
+              <button type="button" data-tab="beauty" class="industry-tab whitespace-nowrap rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-semibold text-slate-300 transition hover:bg-white/10">✂️ Salon</button>
+            </div>
+          </div>
+
+          <!-- Phone Chassis Wrapper -->
+          <div class="relative mx-auto w-[290px]">
+            <!-- Phone Chassis -->
+            <div class="floaty relative w-full rounded-[2.8rem] border-2 border-white/15 bg-navy-800 p-3 shadow-2xl shadow-black/80 ring-1 ring-white/10">
+              <!-- Speaker grill -->
+              <div class="mx-auto mb-2 h-1.5 w-16 rounded-full bg-white/20"></div>
+
+              <!-- Phone Screen -->
+              <div class="overflow-hidden rounded-[2.1rem] bg-white text-slate-900 transition-all duration-300" id="mockupScreen">
+                <!-- Top Header inside mockup -->
+                <div id="mockupHeader" class="bg-navy-900 px-4 pb-4 pt-3.5 text-white transition-colors duration-300">
+                  <div class="flex items-center justify-between text-[10px] text-slate-400">
+                    <span id="mockupUrl" class="font-mono">trendstore.rs</span>
+                    <i data-lucide="lock" class="h-3 w-3 text-emerald-400"></i>
+                  </div>
+                  <p id="mockupBadge" class="mt-2.5 text-[10px] font-bold uppercase tracking-wider text-cyan-300">E-Prodavnica • Brza isporuka</p>
+                  <p id="mockupTitle" class="mt-0.5 text-base font-extrabold leading-tight">Trend Store E-Shop</p>
+                  
+                  <div class="mt-1.5 flex items-center gap-1.5 text-[11px]">
+                    <span class="flex text-amber-400">
+                      <i data-lucide="star" class="h-3 w-3 fill-current"></i>
+                      <i data-lucide="star" class="h-3 w-3 fill-current"></i>
+                      <i data-lucide="star" class="h-3 w-3 fill-current"></i>
+                      <i data-lucide="star" class="h-3 w-3 fill-current"></i>
+                      <i data-lucide="star" class="h-3 w-3 fill-current"></i>
+                    </span>
+                    <span id="mockupRating" class="text-slate-300">4,9 • 230 recenzija</span>
+                  </div>
+
+                  <!-- Instant Action Buttons in Mockup -->
+                  <div class="mt-3 grid grid-cols-2 gap-2">
+                    <span class="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-500 py-2 text-[11px] font-bold text-white shadow">
+                      <i data-lucide="shopping-bag" class="h-3 w-3"></i> Poruči
+                    </span>
+                    <span class="flex items-center justify-center gap-1 rounded-lg bg-white/15 py-2 text-[11px] font-bold text-white">
+                      <i data-lucide="phone" class="h-3 w-3"></i> Pozovi
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Price & Services List inside mockup -->
+                <div class="space-y-2 p-3.5 text-[11px]">
+                  <div class="flex items-center justify-between">
+                    <p class="font-bold text-slate-700">Popularni artikli na stanju</p>
+                    <span class="text-[9px] font-semibold text-emerald-600">Ažurirano</span>
+                  </div>
+                  
+                  <div id="mockupServices" class="space-y-1.5">
+                    <div class="flex items-center justify-between rounded-lg bg-slate-50 px-2.5 py-1.5"><span>Kožni novčanik Slim</span><b class="text-navy-900">2.890 din</b></div>
+                    <div class="flex items-center justify-between rounded-lg bg-slate-50 px-2.5 py-1.5"><span>Bežične slušalice Pro</span><b class="text-navy-900">4.490 din</b></div>
+                    <div class="flex items-center justify-between rounded-lg bg-slate-50 px-2.5 py-1.5"><span>Magnetni držač MagSafe</span><b class="text-navy-900">1.790 din</b></div>
+                  </div>
+
+                  <div id="mockupStatus" class="flex items-center gap-1.5 pt-1 text-[10px] font-bold text-emerald-600">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Isporuka za 24h • Plaćanje pouzećem</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Hint / Trust Info Below Phone -->
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-300">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300">
+              <span class="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+              Poziv i narudžbine jednim dodirom
+            </span>
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-[11px] text-cyan-300">
+              <i data-lucide="trending-up" class="h-3.5 w-3.5 text-cyan-400"></i>
+              Prosečno +19 novih upita mesečno
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. PROBLEM / SOLUTION: WHERE CUSTOMERS ARE LOST
+         ========================================================= -->
+    <section class="bg-slate-50 py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-xs font-bold uppercase tracking-wider text-cyan-700 sm:text-sm">Gde vam beži novac</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Samo Google profil ili Instagram više nisu dovoljni. Evo zašto.
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            Kad čovek traži majstora ili uslugu na telefonu, donosi odluku za <b class="text-navy-900">manje od 10 sekundi</b>. Ako ne vidi cene i jasan poziv — ide pravo kod konkurencije.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-2">
+          
+          <!-- Card 1: WITHOUT FAST WEBSITE (PAIN) -->
+          <article class="reveal-left relative flex flex-col justify-between rounded-3xl border-2 border-rose-200/80 bg-white p-7 shadow-card transition sm:p-9">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-rose-50 text-rose-600">
+                  <i data-lucide="circle-x" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700">Kako gubite poslove</span>
+              </div>
+              
+              <h3 class="mt-5 text-xl font-extrabold text-navy-900">Vaš profil bez modernog sajta</h3>
+              <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+                Čovek vas nađe na mapi. Vidi adresu i nekoliko starih slika, ali <b>nema pojma koliko koštate</b>, šta tačno obuhvata posao i da li ste danas otvoreni. Neće da zove samo da bi pitao glupa pitanja.
+              </p>
+
+              <div class="mt-6 space-y-3.5 border-t border-slate-100 pt-5 text-sm">
+                <div class="flex items-start gap-3 text-slate-700">
+                  <i data-lucide="x" class="mt-0.5 h-5 w-5 shrink-0 text-rose-500"></i>
+                  <span>Nema cenovnika ni detaljnog spiska usluga</span>
+                </div>
+                <div class="flex items-start gap-3 text-slate-700">
+                  <i data-lucide="x" class="mt-0.5 h-5 w-5 shrink-0 text-rose-500"></i>
+                  <span>Mora ručno da prepisuje broj telefona</span>
+                </div>
+                <div class="flex items-start gap-3 text-slate-700">
+                  <i data-lucide="x" class="mt-0.5 h-5 w-5 shrink-0 text-rose-500"></i>
+                  <span>Delujete manje ozbiljno nego što zaista jeste</span>
+                </div>
+                <div class="flex items-start gap-3 font-semibold text-rose-600">
+                  <i data-lucide="x-circle" class="mt-0.5 h-5 w-5 shrink-0"></i>
+                  <span>Vraća se korak unazad i zove sledećeg majstora na Guglu</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 rounded-2xl bg-rose-50/70 p-4 text-xs font-medium text-rose-900">
+              💔 <b>Gubitak:</b> Svakog meseca 10–30 poslova ode konkurenciji koja ima jednostavan sajt od par stotina evra.
+            </div>
+          </article>
+
+          <!-- Card 2: WITH OUR HIGH-CONVERTING SITE (PLEASURE & PROFIT) -->
+          <article class="reveal-right delay-150 relative flex flex-col justify-between rounded-3xl border-2 border-emerald-500 bg-white p-7 shadow-xl ring-4 ring-emerald-500/10 sm:p-9">
+            <span class="absolute -top-3.5 right-8 rounded-full bg-emerald-600 px-3.5 py-1 text-xs font-extrabold text-white shadow">
+              ✓ Ovako uzimate mušterije
+            </span>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
+                  <i data-lucide="circle-check" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">Mašina za pozive</span>
+              </div>
+
+              <h3 class="mt-5 text-xl font-extrabold text-navy-900">Sa vašim novim, brzim sajtom</h3>
+              <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+                Otvara sajt za <b>manje od 1 sekunde</b> na telefonu. Za pola minuta vidi sve: šta radite, cene, najbolje ocene komšija i veliko zeleno dugme „Pozovi”.
+              </p>
+
+              <div class="mt-6 space-y-3.5 border-t border-slate-100 pt-5 text-sm">
+                <div class="flex items-start gap-3 text-slate-700">
+                  <i data-lucide="check" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 font-bold"></i>
+                  <span>Cene i usluge kristalno jasne — odmah zna na čemu je</span>
+                </div>
+                <div class="flex items-start gap-3 text-slate-700">
+                  <i data-lucide="check" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 font-bold"></i>
+                  <span>Dugme „Pozovi” i „Viber” direktno pod palcem</span>
+                </div>
+                <div class="flex items-start gap-3 text-slate-700">
+                  <i data-lucide="check" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 font-bold"></i>
+                  <span>Google recenzije na vrhu ulivaju 100% poverenje</span>
+                </div>
+                <div class="flex items-start gap-3 font-bold text-emerald-700">
+                  <i data-lucide="phone-call" class="mt-0.5 h-5 w-5 shrink-0"></i>
+                  <span>Telefon zvoni kod vas i posao je dogovoren</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 rounded-2xl bg-emerald-50 p-4 text-xs font-semibold text-emerald-950">
+              💰 <b>Rezultat:</b> Sajt se isplati već od prvog ili drugog klijenta koji vas pozove sa Gugla.
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. INTERACTIVE LOST REVENUE CALCULATOR
+         ========================================================= -->
+    <section id="kalkulator" class="bg-white py-16 sm:py-24 border-y border-slate-200">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6">
+        
+        <div class="reveal text-center">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800">
+            <i data-lucide="calculator" class="h-3.5 w-3.5"></i> Izračunajte sami
+          </span>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Koliko novca gubite svakog meseca jer nemate sajt?
+          </h2>
+          <p class="mx-auto mt-3 max-w-2xl text-base text-slate-600">
+            Pomerite klizače ispod da vidite koliko vam novca bukvalno odlazi u džepove konkurencije:
+          </p>
+        </div>
+
+        <div class="reveal-scale delay-100 mt-10 rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-10 shadow-card">
+          <div class="grid gap-8 md:grid-cols-2">
+            
+            <!-- Sliders -->
+            <div class="space-y-6">
+              <div>
+                <div class="flex items-center justify-between text-sm">
+                  <label for="priceRange" class="font-bold text-slate-700">Prosečna zarada po poslu / poseti:</label>
+                  <span id="priceVal" class="text-base font-extrabold text-cyan-700">4.000 RSD</span>
+                </div>
+                <input id="priceRange" type="range" min="1000" max="30000" step="500" value="4000" class="mt-3" />
+                <div class="mt-1 flex justify-between text-[11px] text-slate-400">
+                  <span>1.000 RSD</span>
+                  <span>15.000 RSD</span>
+                  <span>30.000 RSD</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-sm">
+                  <label for="clientsRange" class="font-bold text-slate-700">Propuštenih mušterija mesečno:</label>
+                  <span id="clientsVal" class="text-base font-extrabold text-cyan-700">6 mušterija</span>
+                </div>
+                <input id="clientsRange" type="range" min="1" max="25" step="1" value="6" class="mt-3" />
+                <div class="mt-1 flex justify-between text-[11px] text-slate-400">
+                  <span>1 mušterija</span>
+                  <span>10 mušterija</span>
+                  <span>25 mušterija</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">Ljudi koji u vašem gradu traže vašu delatnost na telefonu i odu kod drugog.</p>
+              </div>
+            </div>
+
+            <!-- Dynamic Result Card -->
+            <div class="flex flex-col justify-between rounded-2xl bg-navy-900 p-6 text-white sm:p-8">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Gubitak za vašu firmu:</p>
+                <div class="mt-3">
+                  <span class="text-sm font-semibold text-rose-300">Svakog meseca gubite:</span>
+                  <p id="monthlyLoss" class="text-3xl sm:text-4xl font-black text-rose-400">24.000 RSD</p>
+                </div>
+                <div class="mt-4 border-t border-white/10 pt-4">
+                  <span class="text-xs font-semibold text-slate-400">Godišnje poklonjeno konkurenciji:</span>
+                  <p id="yearlyLoss" class="text-xl sm:text-2xl font-black text-amber-300">288.000 RSD (~2.450 €)</p>
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <a data-link="tel" href="#" class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#22e5f0] to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 px-5 text-sm font-black text-slate-950 shadow-cta transition">
+                  <i data-lucide="phone-call" class="h-4 w-4"></i>
+                  Zaustavi odliv novca — Pozovi odmah
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mt-6 border-t border-slate-200 pt-4 text-center text-xs font-medium text-slate-500">
+            💡 Cena izrade sajta je samo <b class="text-navy-900" data-cfg="priceFrom">240</b> <span data-cfg="currency">€</span> (plaćate jednom). Sajt se isplati već od prvih 2-3 klijenta!
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. HOW IT WORKS: 3 EFFORTLESS STEPS (ZERO TECH REQUIRED)
+         ========================================================= -->
+    <section id="kako-radimo" class="bg-white py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-xs font-bold uppercase tracking-wider text-cyan-700 sm:text-sm">Jednostavan proces</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Tri koraka, a vi ne gubite vreme na tehniku
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            Znamo da radite ceo dan i nemate živaca za programerski rečnik i popunjavanje tabela. Kod nas sve ide opušteno i brzo.
+          </p>
+        </div>
+
+        <ol class="mt-14 grid gap-8 md:grid-cols-3">
+
+          <!-- Step 1 -->
+          <li class="reveal-up relative rounded-3xl border border-slate-200 bg-white p-7 shadow-card sm:p-8">
+            <span class="relative z-10 grid h-16 w-16 place-items-center rounded-2xl bg-navy-900 text-2xl font-extrabold text-white ring-8 ring-white shadow-lg">1</span>
+            <h3 class="mt-6 text-xl font-extrabold text-navy-900">5 minuta razgovora</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Čujemo se kratko ili mi pošaljete poruku na Viber sa linkom do vaše radnje ili Google profila. Kažete mi čime se bavite i šta najčešće radite, a ja sve složim u spreman sajt.
+            </p>
+          </li>
+
+          <!-- Step 2 -->
+          <li class="reveal-up delay-150 relative rounded-3xl border border-cyan-200 bg-cyan-50/40 p-7 shadow-card sm:p-8">
+            <span class="relative z-10 grid h-16 w-16 place-items-center rounded-2xl bg-cyan-600 text-2xl font-extrabold text-white ring-8 ring-white shadow-lg">2</span>
+            <h3 class="mt-6 text-xl font-extrabold text-navy-900">Probni sajt za 48h (0€)</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Za dva dana vam pošaljem link do gotovog probnog sajta. Otvorite ga na svom telefonu dok pijete kafu. Ako kažete: <i>„Promeni ovu cenu, dodaj onu sliku”</i> — sredim to za par minuta.
+            </p>
+          </li>
+
+          <!-- Step 3 -->
+          <li class="reveal-up delay-300 relative rounded-3xl border border-emerald-200 bg-emerald-50/30 p-7 shadow-card sm:p-8">
+            <span class="relative z-10 grid h-16 w-16 place-items-center rounded-2xl bg-emerald-600 text-2xl font-extrabold text-white ring-8 ring-white shadow-lg">3</span>
+            <h3 class="mt-6 text-xl font-extrabold text-navy-900">Plaćate tek kad kažete: „Ovo je vrh!”</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Tek kada ste 100% zadovoljni onim što vidite, puštamo sajt na vaš domen i spajamo sa Google mapom. Od tog dana telefon počinje da zvoni od ljudi koji su vas našli na internetu.
+            </p>
+          </li>
+        </ol>
+
+        <div class="reveal mt-12 text-center">
+          <a data-link="tel" href="#" class="pulse-glow inline-flex min-h-[58px] items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#22e5f0] to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 px-8 text-base font-black text-slate-950 shadow-cta transition hover:-translate-y-0.5">
+            <i data-lucide="phone-call" class="h-5 w-5"></i>
+            Hoću da vidim besplatan probni sajt za svoju firmu
+          </a>
+          <p class="mt-3 text-xs text-slate-500">Bez ikakvih skrivenih troškova i bez obaveze.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. WHAT'S INCLUDED: THE COMPLETE VALUE STACK & SERVICES
+         ========================================================= -->
+    <section id="usluge" class="bg-slate-50 py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-100 px-3.5 py-1 text-xs font-bold text-cyan-800">
+            <i data-lucide="sparkles" class="h-3.5 w-3.5"></i> Kompletan sistem za dominaciju na lokalu
+          </span>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Sve što vam treba da vas komšiluk nađe, izabere i pozove
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            Ne pravimo samo „običan sajt”, već kompletan paket alata koji radi za vas 24/7 i pretvara ljude sa Gugla u direktne mušterije.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Service 1: Google Profil & Mape -->
+          <article class="reveal-up group rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-cardHover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-600 transition group-hover:bg-emerald-600 group-hover:text-white">
+                  <i data-lucide="map-pin" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700">Top 3 na mapi</span>
+              </div>
+              <h3 class="mt-5 text-lg font-extrabold text-navy-900">Google Profil & Mape</h3>
+              <p class="text-xs font-semibold text-emerald-600">Da vas komšiluk vidi na vrhu mape</p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-600">
+                Sređujemo, verifikujemo i optimizujemo vaš profil na Google Mapama. Ubacujemo tačne usluge, radno vreme i slike tako da vas Google preporuči među prva tri rezultata u vašem gradu.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+              ✓ Ključno za lokalne mušterije
+            </div>
+          </article>
+
+          <!-- Service 2: Lokalni SEO -->
+          <article class="reveal-up delay-100 group rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-cardHover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-sky-50 text-sky-600 transition group-hover:bg-sky-600 group-hover:text-white">
+                  <i data-lucide="search" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-sky-50 px-2.5 py-0.5 text-[11px] font-bold text-sky-700">Google pretraga</span>
+              </div>
+              <h3 class="mt-5 text-lg font-extrabold text-navy-900">Lokalni SEO</h3>
+              <p class="text-xs font-semibold text-sky-600">Rangiranje za vaš grad i delatnost</p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-600">
+                Podešavamo sajt i ključne reči za vašu opštinu (npr. „auto servis Pančevo” ili „zubar Vračar”). Ugrađujemo <i>LocalBusiness</i> mikro-podatke da vas Google rangira iznad konkurencije.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+              ✓ Besplatan priliv novih poziva
+            </div>
+          </article>
+
+          <!-- Service 3: Sistem za 5★ Google recenzije -->
+          <article class="reveal-up delay-200 group rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-cardHover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-50 text-amber-500 transition group-hover:bg-amber-500 group-hover:text-white">
+                  <i data-lucide="star" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-bold text-amber-700">Poverenje kupaca</span>
+              </div>
+              <h3 class="mt-5 text-lg font-extrabold text-navy-900">Sistem za 5★ recenzije</h3>
+              <p class="text-xs font-semibold text-amber-600">QR kod i brzi link za ocene</p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-600">
+                Dobijate gotov QR kod za radionicu/pult i direktan Viber link koji šaljete mušterijama nakon završenog posla. Zadovoljan klijent jednim klikom ostavlja 5★ i gradi vaš ugled.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+              ✓ 80% ljudi bira firmu sa više recenzija
+            </div>
+          </article>
+
+          <!-- Service 4: Prodajni sajt za mobilni -->
+          <article class="reveal-up group rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-cyan-300 hover:shadow-cardHover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-cyan-50 text-cyan-700 transition group-hover:bg-cyan-600 group-hover:text-white">
+                  <i data-lucide="smartphone" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-cyan-50 px-2.5 py-0.5 text-[11px] font-bold text-cyan-800">Mobilni dizajn</span>
+              </div>
+              <h3 class="mt-5 text-lg font-extrabold text-navy-900">Prodajni sajt za telefon</h3>
+              <p class="text-xs font-semibold text-cyan-700">Otvara se za 0.8s, poziv jednim dodirom</p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-600">
+                Pravimo ultra-brz sajt optimizovan za ekran telefona. Cene, usluge, utisci i dugmad za direktan poziv, Viber i navigaciju nalaze se odmah pod palcem posetioca.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+              ✓ Nula sekundi čekanja za mušteriju
+            </div>
+          </article>
+
+          <!-- Service 5: Domen, hosting i tehnička podrška -->
+          <article class="reveal-up delay-100 group rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-cardHover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-50 text-violet-600 transition group-hover:bg-violet-600 group-hover:text-white">
+                  <i data-lucide="shield-check" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-violet-50 px-2.5 py-0.5 text-[11px] font-bold text-violet-700">100% bez briga</span>
+              </div>
+              <h3 class="mt-5 text-lg font-extrabold text-navy-900">Domen, hosting i podrška</h3>
+              <p class="text-xs font-semibold text-violet-600">Bez briga i bez učenja tehnike</p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-600">
+                Uključena registracija .rs ili .com domena 100% na vaše ime, munjeviti serveri i bezbedni SSL katanac (HTTPS). O tehnici vi ne morate da mislite ni sekunde — sve rešavam ja.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+              ✓ Domen ostaje vaše trajno vlasništvo
+            </div>
+          </article>
+
+          <!-- Service 6: Lokalne Google Reklame (Google Ads) -->
+          <article class="reveal-up delay-200 group rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-rose-300 hover:shadow-cardHover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-rose-50 text-rose-600 transition group-hover:bg-rose-600 group-hover:text-white">
+                  <i data-lucide="target" class="h-6 w-6"></i>
+                </span>
+                <span class="rounded-full bg-rose-50 px-2.5 py-0.5 text-[11px] font-bold text-rose-700">Hitni poslovi</span>
+              </div>
+              <h3 class="mt-5 text-lg font-extrabold text-navy-900">Google Ads Reklame</h3>
+              <p class="text-xs font-semibold text-rose-600">Za one koji žele poslove odmah danas</p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-600">
+                Za delatnosti gde mušterije trebaju hitno (šlep služba, hitno odgušenje, zubar) ili tek otvarate radnju. Postavljamo reklame koje vas stavljaju na poziciju #1 na Guglu za 24h.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-bold text-slate-500">
+              ✓ Plaćate samo kada vas neko pozove
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. DEMOS & CASE STUDIES: PROOF THAT IT WORKS
+         ========================================================= -->
+    <section id="primeri" class="bg-white py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-xs font-bold uppercase tracking-wider text-cyan-700 sm:text-sm">Primeri i rezultati</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Pogledajte kako to izgleda u praksi
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            Ovako izgledaju sajtovi koje pravimo za lokalne majstore, ordinacije i radnje:
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-3">
+          
+          <!-- Case 1: E-Prodavnica -->
+          <article class="reveal-up flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-card transition hover:shadow-cardHover">
+            <div class="bg-gradient-to-br from-slate-900 to-navy-950 p-6 text-white">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-bold text-cyan-300">
+                <i data-lucide="shopping-bag" class="h-3.5 w-3.5"></i> E-prodavnice i butici
+              </span>
+              <h3 class="mt-4 text-xl font-black">Trend Store E-Shop</h3>
+              <p class="mt-2 text-xs text-slate-300">„Kupci sada naručuju za 30 sekundi preko telefona bez registracije. Više ne gubim sate u prepisci na Instagramu i ne propuštam porudžbine.”</p>
+            </div>
+            <div class="flex flex-1 flex-col justify-between p-6">
+              <ul class="space-y-2 text-xs font-medium text-slate-600">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-emerald-500"></i>Brza korpa i poručivanje pouzećem</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-emerald-500"></i>Obaveštenje o novoj narudžbini na Viber/Email</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-emerald-500"></i>Prikaz lagera i varijacija (boje, veličine)</li>
+              </ul>
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-600">
+                  <i data-lucide="trending-up" class="h-3.5 w-3.5 shrink-0"></i>
+                  <span>+48 online porudžbina mesečno</span>
+                </div>
+                <a data-link="tel" href="#" class="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:bg-cyan-500 hover:text-slate-950 active:scale-95 whitespace-nowrap">
+                  <span>Zatraži ovakav sajt</span>
+                  <i data-lucide="arrow-right" class="h-3.5 w-3.5 shrink-0"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case 2: Clinic -->
+          <article class="reveal-up delay-150 flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-card transition hover:shadow-cardHover">
+            <div class="bg-gradient-to-br from-teal-900 to-navy-950 p-6 text-white">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-500/20 px-3 py-1 text-xs font-bold text-teal-300">
+                <i data-lucide="stethoscope" class="h-3.5 w-3.5"></i> Ordinacije i saloni
+              </span>
+              <h3 class="mt-4 text-xl font-black">Dental Dr Petrović</h3>
+              <p class="mt-2 text-xs text-slate-300">„Pacijenti više ne zivkaju samo da pitaju radno vreme i cene. Sve vide odmah sa slikama ordinacije i zakažu termin preko WhatsApp-a.”</p>
+            </div>
+            <div class="flex flex-1 flex-col justify-between p-6">
+              <ul class="space-y-2 text-xs font-medium text-slate-600">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-teal-500"></i>Spisak stomatoloških usluga i cene</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-teal-500"></i>WhatsApp zakazivanje u 2 klika</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-teal-500"></i>Google ocene 5.0 zvezdica</li>
+              </ul>
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-1.5 text-xs font-bold text-teal-600">
+                  <i data-lucide="trending-up" class="h-3.5 w-3.5 shrink-0"></i>
+                  <span>Mirnija recepcija & više posla</span>
+                </div>
+                <a data-link="tel" href="#" class="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:bg-cyan-500 hover:text-slate-950 active:scale-95 whitespace-nowrap">
+                  <span>Zatraži ovakav sajt</span>
+                  <i data-lucide="arrow-right" class="h-3.5 w-3.5 shrink-0"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case 3: Crafts / Trades -->
+          <article class="reveal-up delay-300 flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-card transition hover:shadow-cardHover">
+            <div class="bg-gradient-to-br from-amber-900 to-navy-950 p-6 text-white">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-bold text-amber-300">
+                <i data-lucide="hammer" class="h-3.5 w-3.5"></i> Majstori i zanatlije
+              </span>
+              <h3 class="mt-4 text-xl font-black">Majstor Nikolić (Hitne int.)</h3>
+              <p class="mt-2 text-xs text-slate-300">„Kad ljudima pukne cev u 22h, nemaju vremena da čitaju romane. Otvore sajt, vide dugme za hitan dolazak i zovu me istog trena.”</p>
+            </div>
+            <div class="flex flex-1 flex-col justify-between p-6">
+              <ul class="space-y-2 text-xs font-medium text-slate-600">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-amber-500"></i>Dugme 'Hitne intervencije 0-24h'</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-amber-500"></i>Slike uspešno završenih poslova</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-amber-500"></i>Dolazak na adresu u roku od 30 min</li>
+              </ul>
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-1.5 text-xs font-bold text-amber-600">
+                  <i data-lucide="trending-up" class="h-3.5 w-3.5 shrink-0"></i>
+                  <span>Otplatio se za 3 dana</span>
+                </div>
+                <a data-link="tel" href="#" class="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:bg-cyan-500 hover:text-slate-950 active:scale-95 whitespace-nowrap">
+                  <span>Zatraži ovakav sajt</span>
+                  <i data-lucide="arrow-right" class="h-3.5 w-3.5 shrink-0"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         8. TRANSPARENT PRICING & IRON-CLAD RISK REVERSAL
+         ========================================================= -->
+    <section id="cena" class="bg-slate-50 py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-xs font-bold uppercase tracking-wider text-cyan-700 sm:text-sm">Jasna ponuda</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Koliko košta? Cena jasna i transparentna.
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-slate-600">
+            Nema skrivenih zvezdica i neprijatnih iznenađenja. Plaćate tek kada vidite gotov sajt na svom telefonu i odobrite ga.
+          </p>
+        </div>
+
+        <div class="reveal-scale delay-100 mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
+          <div class="grid md:grid-cols-5">
+            
+            <!-- Left: Numbers -->
+            <div class="p-6 sm:p-10 md:col-span-2 bg-gradient-to-b from-white to-slate-50 flex flex-col justify-between">
+              <div>
+                <span class="inline-block rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800">Kompletna izrada</span>
+                <div class="mt-4 flex items-baseline gap-2 text-navy-900">
+                  <span class="text-lg font-bold text-slate-500">od</span>
+                  <span class="text-5xl font-black tracking-tight" data-cfg="priceFrom">240</span>
+                  <span class="text-2xl font-extrabold" data-cfg="currency">€</span>
+                </div>
+                <p class="mt-1 text-xs font-bold text-emerald-600">✓ Plaćate samo jednom</p>
+
+                <div class="my-6 h-px bg-slate-200"></div>
+
+                <span class="inline-block rounded-full bg-slate-200 px-3 py-1 text-xs font-bold text-slate-700">Godišnje održavanje</span>
+                <div class="mt-4 flex items-baseline gap-2 text-navy-900">
+                  <span class="text-3xl font-black tracking-tight" data-cfg="maintenancePerYear">60</span>
+                  <span class="text-xl font-extrabold" data-cfg="currency">€</span>
+                  <span class="text-xs font-semibold text-slate-500">/ godišnje</span>
+                </div>
+                <p class="mt-1 text-xs text-slate-500">za domen, brzi server i SSL bezbednost</p>
+              </div>
+
+              <div class="mt-8 rounded-2xl bg-emerald-50 p-3.5 text-xs text-emerald-900">
+                <span class="font-extrabold">🛡️ Gvozdena garancija:</span>
+                Ako vam se probni sajt ne dopadne, ne plaćate ništa. Rizik je 100% moj.
+              </div>
+            </div>
+
+            <!-- Right: Features & High-Value CTA -->
+            <div class="bg-navy-900 p-6 text-white sm:p-10 md:col-span-3 flex flex-col justify-between">
+              <div>
+                <p class="text-sm font-extrabold uppercase tracking-wider text-[#22e5f0]">Šta tačno dobijate u paketu:</p>
+                <ul class="mt-5 space-y-3 text-sm text-slate-200">
+                  <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"></i><span><b>Probni sajt za 48h</b> bez plaćanja ijednog dinara unapred</span></li>
+                  <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"></i><span><b>Google Profil & Mape</b> — verifikacija i optimizacija za vrh mape</span></li>
+                  <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"></i><span><b>Lokalni SEO</b> — podešen da vas lako nađu u vašem gradu</span></li>
+                  <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"></i><span><b>Sistem za 5★ recenzije</b> (QR kod stalak + direktan Viber link)</span></li>
+                  <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"></i><span><b>Domen (.rs ili .com)</b> i ultra-brzi server sa SSL katancem</span></li>
+                  <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"></i><span><b>Mesečni izveštaj o broju poziva</b> sa sajta crno na belo</span></li>
+                </ul>
+                <div class="mt-4 rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-xs text-cyan-200">
+                  🎯 <b>Trebaju vam poslovi još danas?</b> Radimo i ciljane <b>Google Ads</b> reklame za one kojima je hitno potreban pun raspored.
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <a data-link="tel" href="#" class="pulse-glow inline-flex min-h-[56px] w-full items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#22e5f0] to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 px-6 text-base font-black text-slate-950 shadow-cta transition">
+                  <i data-lucide="phone-call" class="h-5 w-5"></i>
+                  Pozovite me za besplatan probni sajt
+                </a>
+                <p class="mt-2.5 text-center text-xs text-slate-400">Javljam se lično • Razgovor traje nekoliko minuta</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         9. DIRECT PERSONAL CREDIBILITY (NOT AN AGENCY)
+         ========================================================= -->
+    <section class="bg-white py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="reveal relative overflow-hidden rounded-[2.5rem] bg-navy-950 px-6 py-12 text-white sm:px-12 sm:py-16">
+          <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl"></div>
+          <div class="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl"></div>
+
+          <div class="relative grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
+            <div class="reveal-left">
+              <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-bold text-cyan-300">
+                <i data-lucide="shield-check" class="h-3.5 w-3.5"></i> Lično iza svakog projekta
+              </span>
+              <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Iza IronWeb-a ne stoji agencija, već inženjer sa imenom i prezimenom.
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-slate-300">
+                U poslu gde mnogi „programeri” traže 50% avansa pa nestanu na dva meseca, ja vam dajem <b class="text-emerald-400">gvozdenu reč</b>: prvo napravim i pošaljem vam probni sajt. Tek ako ste 100% zadovoljni — razgovaramo o saradnji.
+              </p>
+            </div>
+
+            <ul class="reveal-right delay-150 grid gap-3.5">
+              <li class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-500/20 text-emerald-400">
+                  <i data-lucide="phone" class="h-6 w-6"></i>
+                </span>
+                <div>
+                  <p class="font-extrabold">Javljam se lično na telefon</p>
+                  <p class="text-xs text-slate-400">Bez posrednika i gubljenja vremena</p>
+                </div>
+              </li>
+              <li class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-cyan-500/20 text-cyan-300">
+                  <i data-lucide="coffee" class="h-6 w-6"></i>
+                </span>
+                <div>
+                  <p class="font-extrabold">Odgovaram na sva vaša pitanja</p>
+                  <p class="text-xs text-slate-400">Uživo, online, kako god vama odgovara</p>
+                </div>
+              </li>
+              <li class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-sky-500/20 text-sky-300">
+                  <i data-lucide="gauge" class="h-6 w-6"></i>
+                </span>
+                <div>
+                  <p class="font-extrabold">Gvozdeni kvalitet i brzina</p>
+                  <p class="text-xs text-slate-400">Sajtovi se otvaraju u treptaju oka i Google ih obožava</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         10. FAQ: CRUSHING ALL OBJECTIONS
+         ========================================================= -->
+    <section id="pitanja" class="bg-slate-50 py-16 sm:py-24">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6">
+        
+        <div class="reveal mx-auto text-center">
+          <p class="text-xs font-bold uppercase tracking-wider text-cyan-700 sm:text-sm">Odgovori na nedoumice</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+            Šta me ljudi najčešće pitaju pre nego što pozovu
+          </h2>
+        </div>
+
+        <div class="mt-10 space-y-3.5">
+          
+          <details class="reveal-up group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Zašto mi treba sajt ako već imam profil na Instagramu ili Facebooku?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              Na Instagram i Facebook ljudi dolaze da gledaju slike i ubijaju vreme. <b>Niko ne ide na Instagram kad mu u subotu pukne cev ili crkne akumulator.</b> Ljudi kojima usluga treba ODMAH otvaraju Google na svom telefonu sa novčanikom u ruci. Ako vas tu nema sa brzim sajtom i cenama — pozvaće onog ko to ima.
+            </div>
+          </details>
+
+          <details class="reveal-up delay-75 group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Koliko mog vremena je potrebno za izradu sajta?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              <b>Manje od 10 minuta ukupno.</b> Znam da radite od jutra do mraka. Dovoljno je da mi u kratkom razgovoru ili poruci na Viber kažete koje usluge pružate i okvirne cene. Ja pripremim slike, dizajn, strukturu i napravim probni sajt.
+            </div>
+          </details>
+
+          <details class="reveal-up delay-100 group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Da li moram da platim nešto unapred?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              <b>Ne. Probni sajt pravim potpuno besplatno.</b> Za 48h dobijate link na svoj telefon. Pogledate ga, testirate kako radi, i tek ako ste prezadovoljni — ulazimo u saradnju i plaćate. Ako vam se ne svidi — ne plaćate ništa.
+            </div>
+          </details>
+
+          <details class="reveal-up delay-100 group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Šta ako nemam dobre slike svoje radionice ili posla?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              Nema problema. Ako imate par slika slikanih telefonom, pošaljite ih na Viber i ja ću ih profesionalno obraditi. Ako nemate, ja obezbeđujem vrhunske profesionalne fotografije prilagođene vašoj delatnosti.
+            </div>
+          </details>
+
+          <details class="reveal-up delay-150 group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Kako mi tačno pomaže sređivanje Google Profila i Lokalni SEO?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              Kad neko traži majstora ili radnju na mobilnom telefonu, Google na mapi prikazuje samo <b>prva 3 biznisa</b> u tom gradu. Ako vaš profil nema tačne ključne reči, ažurno radno vreme i povezan sajt — Google vas ignoriše i gura konkurenciju. Mi podešavamo profil i sajt tako da Google algoritam prepozna vašu radnju kao glavni izbor u vašem kraju.
+            </div>
+          </details>
+
+          <details class="reveal-up delay-150 group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Šta su Google Ads reklame i da li mi to treba?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              To su sponzorisani oglasi na samom vrhu Gugla. Dok organski SEO polako gradi dugoročnu poziciju, <b>Google Ads donosi pozive već u roku od 24 sata</b>. Ovo je idealno za one kojima je hitno potreban nov posao (npr. šlep služba, hitno odgušenje, zubar) ili tek otvaraju radnju. Plaćate samo kada neko zaista klikne i pozove vas.
+            </div>
+          </details>
+
+          <details class="reveal-up delay-200 group rounded-2xl border border-slate-200 bg-white p-5 shadow-card transition open:border-cyan-300">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-extrabold text-navy-900">
+              Čije je vlasništvo domen i sajt?
+              <i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-180"></i>
+            </summary>
+            <div class="mt-3 text-sm leading-relaxed text-slate-600">
+              <b>Vaš 100%.</b> Domen (.rs ili .com) se registruje na vaše ime ili firmu. Niste vezani nikakvim ropskim ugovorima.
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       11. MASSIVE BOTTOM CALL TO ACTION
+       ========================================================= -->
+  <footer id="kontakt" class="hero-glow relative overflow-hidden text-white">
+    <div class="grid-bg pointer-events-none absolute inset-0"></div>
+
+    <div class="reveal relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
+      
+      <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-1.5 text-xs font-bold text-cyan-300 sm:text-sm">
+        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+        Dostupan u svakom trenutku
+      </span>
+
+      <h2 class="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        Želite više poziva i mušterija sa Gugla?
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-base sm:text-lg text-slate-300">
+        Pozovite me odmah ili pošaljite poruku. Bez dosadnih prodajnih priča — samo kratak, otvoren razgovor o vašem poslu.
+      </p>
+
+      <!-- Huge Direct Phone CTA Link -->
+      <a data-link="tel" href="#" class="reveal-scale delay-150 group mt-10 inline-flex flex-col items-center">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-emerald-400 transition">Najbrže se dogovaramo telefonom:</span>
+        <span class="pulse-glow mt-3 flex items-center gap-3 text-3xl font-black tracking-tight text-white transition group-hover:text-emerald-400 sm:text-5xl md:text-6xl">
+          <i data-lucide="phone-call" class="h-8 w-8 text-emerald-400 sm:h-12 sm:w-12"></i>
+          <span data-cfg="phoneDisplay">064 123 4567</span>
+        </span>
+      </a>
+
+      <!-- Messaging Action Grid -->
+      <div class="reveal-up delay-200 mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
+        <a data-link="viber" href="#" class="inline-flex min-h-[56px] items-center justify-center gap-2.5 rounded-2xl bg-viber px-5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-viber-dark active:scale-95">
+          <svg class="h-5 w-5 fill-current"><use href="#ico-viber"/></svg>Viber
+        </a>
+        <a data-link="wa" href="#" target="_blank" rel="noopener" class="inline-flex min-h-[56px] items-center justify-center gap-2.5 rounded-2xl bg-emerald-600 px-5 font-bold text-white shadow-call transition hover:-translate-y-0.5 hover:bg-emerald-500 active:scale-95">
+          <svg class="h-5 w-5 fill-current"><use href="#ico-wa"/></svg>WhatsApp
+        </a>
+        <a data-link="mail" href="#" class="inline-flex min-h-[56px] items-center justify-center gap-2.5 rounded-2xl border border-white/15 bg-white/10 px-5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/15 active:scale-95">
+          <i data-lucide="mail" class="h-5 w-5"></i>Email
+        </a>
+      </div>
+
+      <p class="mt-4 text-xs sm:text-sm text-slate-400">
+        Ili pišite direktno na: <a data-link="mail" href="#" class="underline underline-offset-4 text-slate-300 hover:text-white" data-cfg="email">kontakt@ironweb.rs</a>
+      </p>
+    </div>
+
+    <!-- Bottom Copyright & Footer Links -->
+    <div class="relative border-t border-white/10">
+      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-xs text-slate-400 sm:flex-row sm:px-6">
+        <div class="flex items-center gap-3">
+            <img src="ironweb-logo-full.svg" alt="IronWeb Logo" class="h-8 w-8 rounded-lg border border-cyan-400/20 object-contain bg-[#2d3b4e]" />
+            <p>© <span data-cfg="year">2026</span> <span class="font-bold text-white"><span class="text-[#8a969e]">Iron</span><span class="text-[#22e5f0]">Web</span></span> • Gvozdenović • <span data-cfg="city">Beograd, Pančevo i cela Srbija</span></p>
+          </div>
+        <div class="flex gap-6 font-medium">
+          <a href="#kako-radimo" class="hover:text-white">Kako radimo</a>
+          <a href="#kalkulator" class="hover:text-white">Kalkulator</a>
+          <a href="#usluge" class="hover:text-white">Sve usluge</a>
+          <a href="#cena" class="hover:text-white">Cena</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       12. MOBILE STICKY BOTTOM BAR (CONVERT ON SMARTPHONES)
+       ========================================================= -->
+  <div class="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 px-3 pt-2.5 shadow-[0_-10px_30px_-10px_rgba(15,23,42,.3)] backdrop-blur md:hidden">
+    <div class="grid grid-cols-2 gap-2">
+      <!-- Direct Call Button -->
+      <a data-link="tel" href="#" class="pulse-glow inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-sm font-extrabold text-white shadow-call active:scale-[.97]">
+        <i data-lucide="phone-call" class="h-5 w-5 text-emerald-200"></i>
+        <span>POZOVI ODMAH</span>
+      </a>
+
+      <!-- Quick Message Chooser -->
+      <button type="button" data-open-chooser class="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-navy-950 text-sm font-extrabold text-white active:scale-[.97]">
+        <div class="flex items-center gap-1">
+          <svg class="h-4 w-4 text-viber fill-current"><use href="#ico-viber"/></svg>
+          <svg class="h-4 w-4 text-emerald-400 fill-current"><use href="#ico-wa"/></svg>
+        </div>
+        <span>Viber / WhatsApp</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       13. VIBER / WHATSAPP CHOOSER DIALOG
+       ========================================================= -->
+  <div id="chooser" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="chooserTitle">
+    <div data-close-chooser class="absolute inset-0 bg-navy-950/75 backdrop-blur-sm transition-opacity"></div>
+    <div id="chooserPanel" class="safe-bottom absolute inset-x-0 bottom-0 translate-y-full rounded-t-3xl bg-white px-6 pt-4 pb-6 transition-transform duration-300 sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:w-full sm:max-w-sm sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-3xl sm:p-7">
+      <div class="mx-auto mb-4 h-1.5 w-12 rounded-full bg-slate-200 sm:hidden"></div>
+      <div class="flex items-start justify-between">
+        <div>
+          <p id="chooserTitle" class="text-lg font-black text-navy-900">Gde vam je lakše da pišete?</p>
+          <p class="mt-1 text-xs text-slate-500">Javljam se ubrzo sa odgovorom.</p>
+        </div>
+        <button type="button" data-close-chooser class="-mr-2 -mt-1 grid h-10 w-10 place-items-center rounded-full text-slate-400 hover:bg-slate-100" aria-label="Zatvori">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+      <div class="mt-5 grid gap-3">
+        <a data-link="wa" href="#" target="_blank" rel="noopener" class="inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl bg-emerald-600 text-sm font-extrabold text-white shadow-call hover:bg-emerald-500 active:scale-95">
+          <svg class="h-5 w-5"><use href="#ico-wa"/></svg> Otvori WhatsApp
+        </a>
+        <a data-link="viber" href="#" class="inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl bg-viber text-sm font-extrabold text-white hover:bg-viber-dark active:scale-95">
+          <svg class="h-5 w-5 fill-current"><use href="#ico-viber"/></svg> Otvori Viber
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       14. CONFIGURATION — PODESITE VAŠE PODATKE OVDE
+       ========================================================= -->
+  <script>
+    const CONFIG = {
+      // Naziv vašeg biznisa / studija
+      brandName: 'IronWeb',
+      ownerLastName: 'Gvozdenović',
+      
+      // Vaš grad i region
+      city: 'Beograd, Pančevo i cela Srbija',
+
+      // Prikaz broja telefona na sajtu (za posetioce)
+      phoneDisplay: '064 123 4567',
+
+      // Broj telefona za pozive i chat u formatu 3816... (bez + i bez početne 0)
+      phoneIntl: '381641234567',
+
+      // Vaša email adresa
+      email: 'kontakt@ironweb.rs',
+
+      // Adresa vašeg sajta
+      siteUrl: 'https://ironweb.rs/',
+
+      // Početna cena izrade (u evrima)
+      priceFrom: '240',
+
+      // Cena godišnjeg održavanja (u evrima)
+      maintenancePerYear: '60',
+      currency: '€',
+
+      // Predefinisana poruka koja se otvara na WhatsApp-u
+      waMessage: 'Zdravo! Vlasnik sam lokalne firme i zanima me besplatan probni sajt kod IronWeb-a.',
+    };
+
+    // Podaci za interaktivni telefon u Hero sekciji
+    const DEMO_DATA = {
+      shop: {
+        url: 'trendstore.rs',
+        badge: 'E-Prodavnica • Brza isporuka',
+        title: 'Trend Store E-Shop',
+        rating: '4,9 • 230 recenzija',
+        headerBg: 'bg-navy-900',
+        services: [
+          { name: 'Kožni novčanik Slim', price: '2.890 din' },
+          { name: 'Bežične slušalice Pro', price: '4.490 din' },
+          { name: 'Magnetni držač MagSafe', price: '1.790 din' },
+        ],
+        status: 'Isporuka za 24h • Plaćanje pouzećem',
+      },
+      clinic: {
+        url: 'dr-petrovic-dental.rs',
+        badge: 'Stomatologija • Vračar',
+        title: 'Ordinacija Dr Petrović',
+        rating: '5,0 • 118 recenzija',
+        headerBg: 'bg-teal-900',
+        services: [
+          { name: 'Besplatan pregled', price: '0 din' },
+          { name: 'Skidanje kamenca', price: '2.500 din' },
+          { name: 'Bezbolno vađenje', price: 'od 3.000 din' },
+        ],
+        status: 'Otvoreno danas do 20:00h',
+      },
+      trades: {
+        url: 'majstor-nikolic.rs',
+        badge: 'Vodoinstalater • Beograd',
+        title: 'Hitne Intervencije Nikolić',
+        rating: '4,9 • 165 recenzija',
+        headerBg: 'bg-amber-900',
+        services: [
+          { name: 'Mašinsko odgušenje', price: 'od 3.500 din' },
+          { name: 'Zamena ventila/baterija', price: 'od 2.500 din' },
+          { name: 'Montaža bojlera', price: 'od 3.500 din' },
+        ],
+        status: 'Dežurni majstor dostupan 00–24h',
+      },
+      beauty: {
+        url: 'elegance-salon.rs',
+        badge: 'Frizerski salon • Novi Beograd',
+        title: 'Studio Elegance',
+        rating: '4,9 • 210 recenzija',
+        headerBg: 'bg-rose-900',
+        services: [
+          { name: 'Šišanje & feniranje', price: 'od 1.800 din' },
+          { name: 'Balayage & preliv', price: 'od 5.500 din' },
+          { name: 'Manikir & trajni lak', price: '2.200 din' },
+        ],
+        status: 'Otvoreno danas 09:00 – 20:00h',
+      },
+    };
+  </script>
+
+  <!-- =========================================================
+       15. APPLICATION LOGIC & INTERACTIVE SCRIPTS
+       ========================================================= -->
+  <script>
+    (function () {
+      const C = CONFIG;
+
+      // Generiši dinamičke linkove za kontakt
+      const links = {
+        tel: 'tel:+' + C.phoneIntl,
+        wa: 'https://wa.me/' + C.phoneIntl + '?text=' + encodeURIComponent(C.waMessage),
+        viber: 'viber://chat?number=%2B' + C.phoneIntl,
+        mail: 'mailto:' + C.email + '?subject=' + encodeURIComponent('Upit za besplatan probni sajt'),
+      };
+      const values = Object.assign({}, C, { year: String(new Date().getFullYear()) });
+
+      // Popuni sve elemente sa [data-cfg]
+      document.querySelectorAll('[data-cfg]').forEach(el => {
+        const v = values[el.dataset.cfg];
+        if (v != null) el.textContent = v;
+      });
+
+      // Popuni sve linkove sa [data-link]
+      document.querySelectorAll('[data-link]').forEach(el => {
+        const href = links[el.dataset.link];
+        if (href) el.setAttribute('href', href);
+      });
+
+      // Dinamički Title i Schema JSON-LD
+      document.title = C.brandName + ' | Izrada sajtova za lokalne firme — Gvozdenović';
+      const ldJsonEl = document.getElementById('ld-json');
+      if (ldJsonEl) {
+        ldJsonEl.textContent = JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ProfessionalService',
+          name: C.brandName + ' (Gvozdenović)',
+          description: 'IronWeb (Gvozdenović) — Izrada brzih, stabilnih sajtova i e-prodavnica za lokalne firme: butike, radnje, ordinacije i majstore u Srbiji.',
+          url: C.siteUrl,
+          telephone: '+' + C.phoneIntl,
+          email: C.email,
+          areaServed: C.city,
+          address: { '@type': 'PostalAddress', addressLocality: C.city, addressCountry: 'RS' },
+          priceRange: 'od ' + C.priceFrom + ' ' + C.currency,
+        });
+      }
+
+      // 1. Mobile Menu Toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        const setMenu = (open) => {
+          mobileMenu.classList.toggle('hidden', !open);
+          menuBtn.setAttribute('aria-expanded', String(open));
+        };
+        menuBtn.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+        mobileMenu.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+      }
+
+      // 2. Navbar shadow na skrolovanje
+      const nav = document.getElementById('navbar');
+      const onScroll = () => {
+        if (nav) nav.classList.toggle('shadow-2xl', window.scrollY > 12);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // 3. Viber / WhatsApp Chooser Modal
+      const chooser = document.getElementById('chooser');
+      const panel = document.getElementById('chooserPanel');
+      let lastFocus = null;
+
+      const openChooser = () => {
+        if (!chooser || !panel) return;
+        lastFocus = document.activeElement;
+        chooser.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+          panel.classList.remove('translate-y-full');
+          panel.querySelector('a')?.focus();
+        });
+      };
+
+      const closeChooser = () => {
+        if (!chooser || !panel) return;
+        panel.classList.add('translate-y-full');
+        document.body.style.overflow = '';
+        setTimeout(() => chooser.classList.add('hidden'), 250);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      };
+
+      document.querySelectorAll('[data-open-chooser]').forEach(btn => btn.addEventListener('click', openChooser));
+      if (chooser) {
+        chooser.querySelectorAll('[data-close-chooser]').forEach(btn => btn.addEventListener('click', closeChooser));
+        chooser.querySelectorAll('[data-link]').forEach(a => a.addEventListener('click', () => setTimeout(closeChooser, 300)));
+      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chooser && !chooser.classList.contains('hidden')) closeChooser();
+      });
+
+      // 4. Hero Interactive Industry Phone Switcher
+      const tabs = document.querySelectorAll('#heroIndustryTabs .industry-tab');
+      const mockupUrl = document.getElementById('mockupUrl');
+      const mockupBadge = document.getElementById('mockupBadge');
+      const mockupTitle = document.getElementById('mockupTitle');
+      const mockupRating = document.getElementById('mockupRating');
+      const mockupHeader = document.getElementById('mockupHeader');
+      const mockupServices = document.getElementById('mockupServices');
+      const mockupStatus = document.getElementById('mockupStatus');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('border-cyan-400/40', 'bg-cyan-500/20', 'text-cyan-200', 'font-bold');
+            t.classList.add('border-white/10', 'bg-white/5', 'text-slate-300', 'font-semibold');
+          });
+          tab.classList.remove('border-white/10', 'bg-white/5', 'text-slate-300', 'font-semibold');
+          tab.classList.add('border-cyan-400/40', 'bg-cyan-500/20', 'text-cyan-200', 'font-bold');
+
+          const key = tab.dataset.tab;
+          const data = DEMO_DATA[key];
+          if (!data) return;
+
+          if (mockupUrl) mockupUrl.textContent = data.url;
+          if (mockupBadge) mockupBadge.textContent = data.badge;
+          if (mockupTitle) mockupTitle.textContent = data.title;
+          if (mockupRating) mockupRating.textContent = data.rating;
+          if (mockupHeader) {
+            mockupHeader.className = `${data.headerBg} px-4 pb-4 pt-3.5 text-white transition-colors duration-300`;
+          }
+          if (mockupStatus) {
+            mockupStatus.innerHTML = `<span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span><span>${data.status}</span>`;
+          }
+          if (mockupServices) {
+            mockupServices.innerHTML = data.services.map(s => `
+              <div class="flex items-center justify-between rounded-lg bg-slate-50 px-2.5 py-1.5">
+                <span>${s.name}</span>
+                <b class="text-navy-900">${s.price}</b>
+              </div>
+            `).join('');
+          }
+        });
+      });
+
+      // 5. Kalkulator Izgubljenog Novca
+      const priceRange = document.getElementById('priceRange');
+      const clientsRange = document.getElementById('clientsRange');
+      const priceVal = document.getElementById('priceVal');
+      const clientsVal = document.getElementById('clientsVal');
+      const monthlyLoss = document.getElementById('monthlyLoss');
+      const yearlyLoss = document.getElementById('yearlyLoss');
+
+      const formatNumber = (num) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      };
+
+      const updateCalculator = () => {
+        if (!priceRange || !clientsRange) return;
+        const price = parseInt(priceRange.value, 10);
+        const clients = parseInt(clientsRange.value, 10);
+
+        if (priceVal) priceVal.textContent = formatNumber(price) + ' RSD';
+        if (clientsVal) clientsVal.textContent = clients + (clients === 1 ? ' mušterija' : (clients < 5 ? ' mušterije' : ' mušterija'));
+
+        const monthly = price * clients;
+        const yearly = monthly * 12;
+        const yearlyEur = Math.round(yearly / 117);
+
+        if (monthlyLoss) monthlyLoss.textContent = formatNumber(monthly) + ' RSD';
+        if (yearlyLoss) yearlyLoss.textContent = `${formatNumber(yearly)} RSD (~${formatNumber(yearlyEur)} €)`;
+      };
+
+      if (priceRange && clientsRange) {
+        priceRange.addEventListener('input', updateCalculator);
+        clientsRange.addEventListener('input', updateCalculator);
+        updateCalculator();
+      }
+
+      // 6. Inicijalizacija Lucide Ikonica
+      const initIcons = () => {
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+          lucide.createIcons();
+        }
+      };
+      if (window.lucide) {
+        initIcons();
+      } else {
+        window.addEventListener('load', initIcons);
+      }
+
+      // Ponovo pokreni ikonice nakon izmene taba
+      tabs.forEach(tab => tab.addEventListener('click', () => setTimeout(initIcons, 50)));
+
+      // 7. Scroll Reveal Animation Engine (IntersectionObserver)
+      const initScrollReveal = () => {
+        const revealElements = document.querySelectorAll(
+          '.reveal, .reveal-up, .reveal-scale, .reveal-left, .reveal-right'
+        );
+        if (!revealElements.length) return;
+
+        if ('IntersectionObserver' in window) {
+          const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const el = entry.target;
+                el.classList.add('is-revealed');
+                observer.unobserve(el);
+
+                // Nakon završetka mirne animacije ukloni klase kako bi svi Tailwind :hover stilovi radili 100% nativno
+                setTimeout(() => {
+                  el.classList.remove('reveal', 'reveal-up', 'reveal-scale', 'reveal-left', 'reveal-right', 'is-revealed');
+                }, 2200);
+              }
+            });
+          }, {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.08
+          });
+
+          revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+          // Fallback za starije pretraživače bez IntersectionObserver
+          revealElements.forEach(el => el.classList.add('is-revealed'));
+        }
+      };
+      initScrollReveal();
+
+    })();
+  </script>
+
+</body>
+</html>

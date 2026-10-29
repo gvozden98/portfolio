@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#2d3b4e"/>
+
+  <!-- EMBLEM: wireframe hexagon/cube with code brackets -->
+  <g id="emblem" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Gray (Iron) half -->
+    <g stroke="#8a969e">
+      <!-- outer left edges -->
+      <path d="M490 258 L345 338"/>
+      <path d="M345 338 L345 388"/>
+      <path d="M345 470 L345 527"/>
+      <path d="M345 527 L412 568"/>
+      <!-- left bracket "<" -->
+      <path d="M390 404 L356 430 L390 456"/>
+      <!-- inner structure -->
+      <path d="M345 338 L422 383"/>
+      <path d="M422 383 L490 262"/>
+      <path d="M422 383 L500 340"/>
+      <path d="M422 383 L422 420"/>
+      <path d="M422 450 L422 490"/>
+      <path d="M422 383 L500 427"/>
+      <path d="M422 490 L500 440"/>
+      <path d="M422 490 L345 527"/>
+      <path d="M422 490 L500 535"/>
+      <!-- top center tick -->
+      <path d="M512 280 L512 308" stroke-width="7"/>
+    </g>
+    <g fill="#8a969e" stroke="none">
+      <circle cx="345" cy="338" r="13"/>
+      <circle cx="422" cy="383" r="13"/>
+      <circle cx="422" cy="490" r="13"/>
+      <circle cx="345" cy="527" r="13"/>
+    </g>
+
+    <!-- Cyan (Web) half -->
+    <g stroke="#22e5f0">
+      <!-- outer right edges -->
+      <path d="M512 243 L678 340"/>
+      <path d="M678 340 L678 405"/>
+      <path d="M678 462 L678 530"/>
+      <path d="M678 530 L507 628"/>
+      <path d="M507 628 L432 578"/>
+      <!-- right bracket ">" -->
+      <path d="M634 404 L668 430 L634 456"/>
+      <!-- inner structure -->
+      <path d="M512 243 L602 383"/>
+      <path d="M512 333 L602 383"/>
+      <path d="M678 340 L602 383"/>
+      <path d="M602 383 L512 433"/>
+      <path d="M602 383 L600 488"/>
+      <path d="M512 433 L600 488"/>
+      <path d="M512 433 L517 538"/>
+      <path d="M600 488 L678 530"/>
+      <path d="M600 488 L517 538"/>
+      <path d="M517 538 L432 578"/>
+      <path d="M517 538 L507 628"/>
+    </g>
+    <g fill="#22e5f0" stroke="none">
+      <circle cx="512" cy="243" r="14"/>
+      <circle cx="512" cy="333" r="13" opacity="0.75"/>
+      <circle cx="678" cy="340" r="13"/>
+      <circle cx="602" cy="383" r="13"/>
+      <circle cx="512" cy="433" r="13"/>
+      <circle cx="600" cy="488" r="13"/>
+      <circle cx="678" cy="530" r="13"/>
+      <circle cx="517" cy="538" r="13"/>
+      <circle cx="432" cy="578" r="14"/>
+      <circle cx="507" cy="628" r="14"/>
+    </g>
+  </g>
+
+  <!-- WORDMARK -->
+  <text x="512" y="788" text-anchor="middle"
+        font-family="'Rajdhani', 'Orbitron', 'Arial Black', 'Segoe UI', sans-serif"
+        font-weight="800" font-size="140" letter-spacing="2">
+    <tspan fill="#8a969e">Iron</tspan><tspan fill="#22e5f0">Web</tspan>
+  </text>
+</svg>
